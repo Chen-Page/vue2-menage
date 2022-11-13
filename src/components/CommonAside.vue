@@ -2,8 +2,8 @@
     <div id="component_aside">
         <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
             :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-            <h3>通用后台管理系统</h3>
-            <el-menu-item v-for="item in noChildren" :key="item.name" :index="item.name">
+            <h3>{{isCollapse ? '后台' : '通用后台管理系统'}}</h3>
+            <el-menu-item v-for="item in noChildren" :key="item.name" :index="item.name" @click="clickMenu(item)">
                 <i :class="`el-icon-${item.icon}`"></i>
                 <span slot="title">{{ item.label }}</span>
             </el-menu-item>
@@ -13,7 +13,7 @@
                     <span slot="title">{{ item.label }}</span>
                 </template>
                 <el-menu-item-group v-for="subItem in item.children" :key="subItem.name">
-                    <el-menu-item :index="subItem.name">{{ subItem.label }}</el-menu-item>
+                    <el-menu-item :index="subItem.name" @click="clickMenu(subItem)">{{ subItem.label }}</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
         </el-menu>
@@ -31,7 +31,6 @@ export default {
     },
     data() {
         return {
-            isCollapse: false,
             menuData: [
                 {
                     path: '/',
@@ -90,6 +89,10 @@ export default {
                 return item.children
             })
         },
+        isCollapse() {
+            console.log(this.$store)
+            return this.$store.getters['tab/getIsCollapse']
+        },
     },
     watch: {
 
@@ -103,7 +106,15 @@ export default {
         },
         handleClose(key, keyPath) {
             console.log(key, keyPath);
-        }
+        },
+        clickMenu (item) {
+            console.log(item)
+            // 当前页面路由与跳转路由不一致时允许跳转
+            if (this.$route.path !== item.path && !(this.$route.path === '/home' && item.path === '/')) {
+                this.$router.push(item.path)
+            }
+            this.$store.commit('tab/selectMenu', item)
+        },
     }
 };
 </script>
@@ -113,7 +124,9 @@ export default {
     min-height: 400px;
 }
 .el-menu{
+    border-right: 0;
     height: 100vh;
+    min-height: 100vh;
     h3{
         color: white;
         text-align: center;
