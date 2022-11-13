@@ -10,13 +10,13 @@
                 </el-breadcrumb>
             </div>
             <div class="r-content">
-                <el-dropdown>
+                <el-dropdown @command="handleCommand">
                     <span class="el-dropdown-link">
                         <img :src="user.headimg" alt="用户头像" class="img">
                     </span>
                     <el-dropdown-menu slot="dropdown">
                         <el-dropdown-item>个人中心</el-dropdown-item>
-                        <el-dropdown-item>退出</el-dropdown-item>
+                        <el-dropdown-item command="logout">退出</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
             </div>
@@ -24,6 +24,7 @@
     </div>
 </template>
 <script>
+import Cookies from 'js-cookie';
 import { mapState } from 'vuex';
 
 export default {
@@ -57,6 +58,20 @@ export default {
         toggleMenu() {
             this.$store.commit('tab/collapseMenu')
             console.log(this.$store)
+        },
+        handleCommand(e) {
+            if (e == 'logout') {
+                this.logout()
+            }
+        },
+        logout() {
+            Cookies.remove('token')
+            Cookies.remove('menu')
+            this.$router.push({ name: 'login' })
+            this.$message({
+                  message: '退出成功',
+                  type: 'success'
+               })
         },
     }
 };
@@ -94,8 +109,9 @@ export default {
                     color: #666;
                 }
             }
+
             &:last-child {
-                .el-breadcrumb__inner{
+                .el-breadcrumb__inner {
                     color: #fff;
                 }
             }
