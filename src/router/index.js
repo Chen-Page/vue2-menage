@@ -13,6 +13,20 @@ import Main from "../views/Main.vue"
 import login from "../views/login.vue"
 import notFound from "../views/404.vue"
 
+// 创建随机数，防止访问同一路由时报错
+const routerPush = VueRouter.prototype.push
+
+VueRouter.prototype.push = function push (location) {
+    if (typeof location === 'string') {
+        let s = '&'
+        if (location.indexOf('?') === -1) {
+            s = '?'
+        }
+        location = `${location}${s}random=${Math.random()}`
+    }
+    return routerPush.call(this, location).catch(err => err)
+}
+
 // 1.创建路由组件
 // 2.将路由和组件映射
 // 3.创建router实例
