@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkshop_management"]=self["webpackChunkshop_management"]||[]).push([[263],{5263:function(e,n,a){a.r(n),a.d(n,{default:function(){return _}});var t=function(){var e=this;e._self._c;return e._m(0)},u=[function(){var e=this,n=e._self._c;return n("div",{attrs:{id:"page_pageone"}},[n("h1",[e._v("我是PageOne")])])}],r={name:"page_pageone",data(){return{}}},s=r,l=a(1001),p=(0,l.Z)(s,t,u,!1,null,null,null),_=p.exports}}]);
+//# sourceMappingURL=263.b511cd67.js.map

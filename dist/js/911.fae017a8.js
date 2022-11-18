@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkshop_management"]=self["webpackChunkshop_management"]||[]).push([[911],{6911:function(n,e,t){t.r(e),t.d(e,{default:function(){return c}});var a=function(){var n=this;n._self._c;return n._m(0)},u=[function(){var n=this,e=n._self._c;return e("div",{attrs:{id:"page_mall"}},[e("h1",[n._v("我是商品管理页面")])])}],l={name:"page_mall",data(){return{}}},r=l,s=t(1001),_=(0,s.Z)(r,a,u,!1,null,null,null),c=_.exports}}]);
+//# sourceMappingURL=911.fae017a8.js.map
