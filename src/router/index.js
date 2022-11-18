@@ -11,6 +11,7 @@ import Main from "../views/Main.vue"
 // import PageOne from "../views/PageOne.vue"
 // import PageTwo from "../views/PageTwo.vue"
 import login from "../views/login.vue"
+import notFound from "../views/404.vue"
 
 // 1.创建路由组件
 // 2.将路由和组件映射
@@ -55,10 +56,16 @@ const routes = [
         path: '/login',
         name: 'login',
         component: login
+    },
+    {
+        path: '*',
+        name: 'notFound',
+        component: notFound
     }
 ]
 
 const router = new VueRouter({
+    mode: 'history',
     routes
 })
 

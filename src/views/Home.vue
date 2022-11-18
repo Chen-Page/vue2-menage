@@ -225,6 +225,7 @@ export default {
       }
       echarts3.setOption(echarts3Option)
     })
+    console.log('当前环境', process.env);
   }
 }
 </script>
